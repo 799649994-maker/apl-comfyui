@@ -6,7 +6,31 @@
 
 ## 当前状态
 
-仓库初始化完成，尚未接入具体节点，暂不能作为节点包直接安装。
+已接入卡牌切图节点，可将整个仓库作为 ComfyUI 自定义节点包安装。
+
+## 安装与更新
+
+在 ComfyUI 的 `custom_nodes` 目录中执行：
+
+```sh
+git clone https://github.com/799649994-maker/apl-comfyui.git
+```
+
+重启 ComfyUI 后生效。更新时在 `custom_nodes/apl-comfyui` 中执行 `git pull --ff-only`，然后重启。
+
+卡牌切图仅使用 ComfyUI 已有的 Pillow、NumPy 和 PyTorch，无需额外依赖或模型。
+
+如果已安装旧版 `cardpack_cutout` 或 `yxmys-cardpack-cutout`，请先将旧节点文件夹移到 `custom_nodes` 之外备份，再启用本仓库，避免同名节点重复注册。节点标识不变，已有工作流可继续使用。
+
+## 节点目录
+
+| 类别 | 文件夹 | 节点 |
+| --- | --- | --- |
+| 卡牌切图 | [nodes/cardpack_cutout](nodes/cardpack_cutout/README.md) | 卡牌模板切图（免PS）、保存卡牌 PNG32（透明） |
+
+卡牌切图示例：[卡牌切图_免PS.json](nodes/cardpack_cutout/examples/卡牌切图_免PS.json)。拖入 ComfyUI 后，在“加载图像”节点选择自己的图片；IMAGE 与 MASK 两条线均须连接到专用保存节点，才能保留透明通道。
+
+源码来源：[yxmys-cardpack-cutout](https://github.com/799649994-maker/yxmys-cardpack-cutout)，迁入版本 `39c6f96ed787b958478b91d37c71d2d616063fa2`。本次保留原节点实现、模板素材与工作流，增加统一仓库的加载入口。
 
 ## 后续接入约定
 
